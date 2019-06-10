@@ -3,19 +3,19 @@
 class todo_list {
 	public $todos = array();
 
-	function display_todos() {
+	public function display_todos() {
 		print_r($this->todos);
 	}
 
-	function add_todo($todo) {
+	public function add_todo($todo) {
 		array_push($this->todos, $todo);
 	}
 
-	function change_todo($idx, $todo) {
+	public function change_todo($idx, $todo) {
 		array_splice($this->todos, $idx, 1, $todo);
 	}
 
-	function delete_todo($idx) {
+	public function delete_todo($idx) {
 		array_splice($this->todos, $idx, 1);
 	}
 }

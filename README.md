@@ -7,3 +7,5 @@ Version 1: Just playing with data structures, array methods, and prints
 Version 2: Used functions
 
 Version 3: OOP
+
+Version 4: Used Objects for the Tasks, Toggling Tasks

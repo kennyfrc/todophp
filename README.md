@@ -9,3 +9,7 @@ Version 2: Used functions
 Version 3: OOP
 
 Version 4: Used Objects for the Tasks, Toggling Tasks
+
+Version 5: Looping / Iteration
+
+Version 6: Toggle All

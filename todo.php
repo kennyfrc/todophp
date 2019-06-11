@@ -4,7 +4,20 @@ class todo_list {
 	public $todos = array();
 
 	public function display_todos() {
-		var_export($this->todos);
+		if (empty($this->todos)) {
+			print_r("Your todo list is empty. Add some tasks!\n");
+		} else {
+			foreach ($this->todos as $idx => $task) {
+				$task_status = "";
+				if ($task->completed == true) {
+					$task_status = "true";
+				} else {
+					$task_status = "false";
+				}
+				print_r("{$task->todo_text} | completed: {$task_status}\n");
+			}
+		}
+
 	}
 
 	public function add_todo($todo) {
@@ -43,24 +56,25 @@ class task {
 }
 
 
-print_r("initialized todos");
+print_r("initialized todos. should be empty.\n");
 $todos = new todo_list;
+$todos->display_todos();
 
-print_r("add todo\n");
+print_r("\nadd todo\n");
 $todos->add_todo("plan");
 $todos->add_todo("execute");
 $todos->add_todo("win");
 $todos->display_todos();
 
-print_r("change todo\n");
+print_r("\nchange todo\n");
 $todos->change_todo(0, "assess");
 $todos->display_todos();
 
-print_r("delete todo\n");
+print_r("\ndelete todo\n");
 $todos->delete_todo(2);
 $todos->display_todos();
 
-print_r("toggle todo\n");
+print_r("\ntoggle todo\n");
 $todos->toggle_todo(1);
 $todos->display_todos();
 

@@ -1,8 +1,11 @@
 <?php
 
 class todo_list {
+	// intiialize array of todos
 	public $todos = array();
 
+	// display number of tasks, task name, and completion status
+	// if there are no tasks, prompt user to add
 	public function display_todos() {
 		if (empty($this->todos)) {
 			print_r("Your todo list is empty. Add some tasks!\n");
@@ -42,6 +45,7 @@ class todo_list {
 		$this->todos[$idx]->toggle_completed(); // you need to add the parentheses to invoke the function
 	}
 
+	// count all the tasks in the todos passed
 	public function count_all_tasks($todos) {
 		$total_tasks = 0;
 		foreach ($todos as $idx => $task) {
@@ -50,6 +54,7 @@ class todo_list {
 		return $total_tasks;
 	}
 
+	// count all completed tasks in the todos passed
 	public function count_completed_tasks($todos) {
 		$completed_tasks = 0;
 		foreach ($todos as $idx => $task) {
@@ -60,6 +65,8 @@ class todo_list {
 		return $completed_tasks;
 	}
 
+	// if there are less completed tasks than total tasks, mark all as true
+	// otherwise, mark all as false
 	public function toggle_all() {
 		$total_tasks = $this->count_all_tasks($this->todos);
 		$completed_tasks = $this->count_completed_tasks($this->todos);
@@ -75,6 +82,7 @@ class todo_list {
 	}
 }
 
+// initialize a task class that contains the todo text and completion status
 class task {
 	public $todo_text = "";
 	public $completed = false;
@@ -82,7 +90,6 @@ class task {
 	public function toggle_completed() {
 		if ($this->completed == true) {
 			$this->completed = false;
-			var_export($this->completed);
 		} else {
 			$this->completed = true;
 		}

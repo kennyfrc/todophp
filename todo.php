@@ -7,6 +7,8 @@ class todo_list {
 		if (empty($this->todos)) {
 			print_r("Your todo list is empty. Add some tasks!\n");
 		} else {
+			$total_tasks = $this->count_all_tasks($this->todos);
+			print_r("Number of tasks: {$total_tasks}\n");
 			foreach ($this->todos as $idx => $task) {
 				$task_status = "";
 				if ($task->completed == true) {
@@ -38,6 +40,38 @@ class todo_list {
 
 	public function toggle_todo($idx) {
 		$this->todos[$idx]->toggle_completed(); // you need to add the parentheses to invoke the function
+	}
+
+	public function count_all_tasks($todos) {
+		$total_tasks = 0;
+		foreach ($todos as $idx => $task) {
+			$total_tasks++;
+		}
+		return $total_tasks;
+	}
+
+	public function count_completed_tasks($todos) {
+		$completed_tasks = 0;
+		foreach ($todos as $idx => $task) {
+			if ($task->completed == true) {
+				$completed_tasks++;
+			} 
+		}
+		return $completed_tasks;
+	}
+
+	public function toggle_all() {
+		$total_tasks = $this->count_all_tasks($this->todos);
+		$completed_tasks = $this->count_completed_tasks($this->todos);
+		if ($completed_tasks < $total_tasks) {
+			foreach ($this->todos as $idx => $task) {
+				$task->completed = true;
+			}
+		} else {
+			foreach ($this->todos as $idx => $task) {
+				$task->completed = false;
+			}
+		}
 	}
 }
 
@@ -76,6 +110,14 @@ $todos->display_todos();
 
 print_r("\ntoggle todo\n");
 $todos->toggle_todo(1);
+$todos->display_todos();
+
+print_r("\ntoggle all to true\n");
+$todos->toggle_all();
+$todos->display_todos();
+
+print_r("\ntoggle all to false\n");
+$todos->toggle_all();
 $todos->display_todos();
 
 ?>
